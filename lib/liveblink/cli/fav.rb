@@ -7,10 +7,11 @@ module LiveBlink
 			desc "list", "Displays favorites list"
 			method_option :online, :aliases => "-o", :desc => "Lists only streams that are online"
 			def list
-				puts File.read('./lib/favorites.txt')
 				online = options[:online]
 				if online
 					Helper.get_online_favs
+				else 
+					puts File.read('./lib/favorites.txt')
 				end
 			end
 			default_task :list
