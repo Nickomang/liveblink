@@ -11,7 +11,7 @@ module LiveBlink
 				if online
 					Helper.get_online_favs
 				else 
-					puts File.read('./lib/favorites.txt')
+					puts File.read('../../lib/favorites.txt')
 				end
 			end
 			default_task :list
@@ -19,7 +19,7 @@ module LiveBlink
 			#favorites add NAME
 			desc "fav add NAME", "Adds NAME to favorites list"
 			def add(name)
-				open('./lib/favorites.txt', 'a') { |f|
+				open('../../lib/favorites.txt', 'a') { |f|
 		  			f.puts name
 				}
 		 	end
@@ -62,7 +62,7 @@ module LiveBlink
 				links = []
 				i = 0
 				# File.read('../favorites.txt')
-				File.foreach('./lib/favorites.txt') {
+				File.foreach('../../lib/favorites.txt') {
 					|stream| links[i] = stream
 					i += 1
 				}
