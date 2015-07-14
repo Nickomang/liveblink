@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Nicolas Oman"]
   spec.email         = ["nickomang@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = "A ruby CLI to make watching Twitch streams and VODs via Livestreamer fast and easy"
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
