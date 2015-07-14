@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["nickomang@gmail.com"]
 
   spec.summary       = "A ruby CLI to make watching Twitch streams and VODs via Livestreamer fast and easy"
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/Nickomang/liveblink"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
