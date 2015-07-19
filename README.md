@@ -1,6 +1,6 @@
 # Liveblink
 
-Liveblink is a CLI (command line interface) that streamlines the process of watching Twitch streams via [livestreamer](http://livestreamer.io). It has some nice features such as an easy-access favorites list, and the ability to watch the streamer's latest VOD.
+Liveblink is a CLI (command line interface) that streamlines the process of watching Twitch streams via [livestreamer](http://livestreamer.io). It has some nice features such as an easy-access favorites list, and the ability to watch the streamer's latest VOD. You can view more information as well as versioning history on Liveblink's [rubygems page](https://rubygems.org/gems/liveblink)
 
 ## Installation
 
