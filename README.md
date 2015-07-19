@@ -1,39 +1,29 @@
 # Liveblink
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/liveblink`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Liveblink is a CLI (command line interface) that streamlines the process of watching Twitch streams via [livestreamer](http://livestreamer.io). It has some nice features such as an easy-access favorites list, and the ability to watch the streamer's latest VOD.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Make sure you have livestreamer installed. You can find it at [livestreamer.io](http://livestreamer.io)
 
-```ruby
-gem 'liveblink'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Open terminal (or your prefered alternative) and type:
 
     $ gem install liveblink
+
+
+If you get an error, it's likely a problem with ruby. You can test if your ruby is working by typing:
+	
+	$ ruby -v
+
+If you get another error, then you'll need to reinstall ruby. There are a lot of guides on the web on how to do this, so some google searching should help you accomplish this. If you get some output detailing a version, then ruby is not the problem. You can google the error or ask me directly (my email is nickomang@gmail.com)
 
 ## Usage
 
 TODO: Write usage instructions here
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/liveblink.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/nickomang/liveblink.
 
 ## License
 
