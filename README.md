@@ -21,8 +21,8 @@ If you get another error, then you'll need to reinstall ruby. There are a lot of
 
 ### Using the Favorites Module
 
-| Name | Description |
-|--------------------|
+Name | Description
+-----|------------
 
 
 ## Contributing
