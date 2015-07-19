@@ -23,7 +23,15 @@ module LiveBlink
       puts greeting
     end
 
-    desc "fav COMMANDS", "Favorites control module"
+    desc "watch [STREAM_NAME]", "Watches stream associated with url"
+    def watch (url)
+      twitch = "http://www.twitch.tv/#{url}"
+      string = "livestreamer #{twitch} best"
+      puts string
+    end
+
+
+    desc "fav [COMMANDS]", "Favorites control module"
     subcommand "fav", LiveBlink::CLI::Fav
   end
 end
