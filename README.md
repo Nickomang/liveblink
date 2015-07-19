@@ -19,11 +19,15 @@ If you get another error, then you'll need to reinstall ruby. There are a lot of
 
 ## Usage
 
-TODO: Write usage instructions here
+### Using the Favorites Module
+
+| Name | Description |
+|--------------------|
+
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/nickomang/liveblink.
+Bug reports and pull requests are welcome.
 
 ## License
 
