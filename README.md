@@ -23,7 +23,7 @@ If you get another error, then you'll need to reinstall ruby. There are a lot of
 
 Name | Description
 -----|------------
-
+liveblink fav add [NAME] | Adds [NAME] to favorites list
 
 ## Contributing
 
