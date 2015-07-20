@@ -1,4 +1,5 @@
 require 'cathodic'
+require 'highline/import'
 require 'fileutils'
 require 'tempfile'
 
@@ -65,6 +66,16 @@ module LiveBlink
 		 	end
 
 		 	desc "fav clear", "Completely clears favorites list"
+		 	def clear
+		 		answer = ask ("Deleting favorites file, are you sure? (Y/N).")
+		 		answer.downcase
+		 		if answer == 'yes' || answer ==  'y'
+		 			FileUtils.rm(@@fav_path)
+		 			puts "Favorites file deleted."
+		 		else
+		 			puts "Deletion aborted."
+		 		end
+		 	end
 
 		 # 	#favorites -o
 		 # 	desc "fav -o", "Lists favorite streams that are online"

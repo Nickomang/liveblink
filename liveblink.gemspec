@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'httparty'
   spec.add_dependency 'cathodic', "~> 0"
   spec.add_dependency 'iconv'
+  spec.add_dependency 'highline'
 end
