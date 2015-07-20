@@ -5,14 +5,16 @@ module LiveBlink
 		# @@fav_path = "./lib/liveblink/cli/favorites.json"
 		class Fav < Thor
 
-			@@fav_path = "./lib/liveblink/cli/favorites.json"
+			@@fav_path = "./lib/liveblink/cli/favorites.txt"
 
-			desc "init", "Initializes a favorites list, stored as json."
+			desc "init", "Initializes a favorites list, stored as a text file."
 			def init
 				if !(File.file?(@@fav_path))
-					puts "making new file"
+					fav_file = File.new(@@fav_path, "w")
+					fav_file.close
+					puts "Creating favorites file"
 				else
-					puts "file already exists"
+					puts "Favorites file already exists"
 				end
 			end
 
@@ -39,11 +41,16 @@ module LiveBlink
 				open(@@fav_path, 'a') { |f|
 		  			f.puts name
 				}
+				puts "Added #{name}"
 		 	end
 
 		 	#favorites delete NAME
 		 	desc "fav delete [NAME]", "Deletes [NAME] from favorites list"
 		 	def delete(name)
+		 	# 	open(@@fav_path, 'w') { |f|
+		  # 			f.puts name
+				# }
+				puts "Deleted #{name}"
 		 	end
 
 		 # 	#favorites -o
@@ -62,7 +69,7 @@ module LiveBlink
 		end
 
 		module Helper
-			@@fav_path = "./lib/liveblink/cli/favorites.json"
+			@@fav_path = "./lib/liveblink/cli/favorites.txt"
 
 			def self.get_online_favs
 				i = 0

@@ -15,7 +15,7 @@ module LiveBlink
       if options[:scrub]
         string += " scrub_string"
       end
-      puts string
+      system string
     end
     default_task :watch
 
