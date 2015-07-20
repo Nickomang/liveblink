@@ -16,17 +16,21 @@ module LiveBlink
     desc "watch [STREAM_NAME] [QUALITY]", "Watches [STREAM_NAME]'s stream"
     def watch (url, quality=nil)
       user = Twitch.users.get(url)
-      stream = user.stream
-      if stream
-        twitch = "http://www.twitch.tv/#{url}"
-        if quality 
-          string = "livestreamer #{twitch} #{quality}"
+      if user
+        stream = user.stream
+        if stream
+          twitch = "http://www.twitch.tv/#{url}"
+          if quality 
+            string = "livestreamer #{twitch} #{quality}"
+          else
+            string = "livestreamer #{twitch} best"
+          end
+          exec string
         else
-          string = "livestreamer #{twitch} best"
+          puts "#{url} is offline."
         end
-        exec string
       else
-        puts "#{url} is offline."
+        puts "#{url} does not exist."
       end
     end
 
