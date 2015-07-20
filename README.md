@@ -19,10 +19,15 @@ If you get another error, then you'll need to reinstall ruby. There are a lot of
 
 ## Usage
 
-### Using the Favorites Module
+The simplest way to use liveblink is just by typing in the name of the streamer you want to watch. For example:
+
+	$ liveblink arteezy
+
+There is an optional parameter following the name for quality, which defaults to best if nothing is provided.
 
 Name | Description
 -----|------------
+liveblink [STREAM] (QUALITY) | Watches stream
 liveblink fav add [NAME] | Adds [NAME] to favorites list
 
 ## Contributing
