@@ -1,4 +1,8 @@
 require 'thor'
+require 'cathodic'
+require 'highline/import'
+require 'fileutils'
+require 'tempfile'
 # require 'liveblink/cli/fav'
 # require 'liveblink/cli/test'
 
@@ -9,9 +13,14 @@ module LiveBlink
 
     desc "watch [STREAM_NAME] [QUALITY]", "Watches stream associated with url"
     option :scrub
-    def watch (url, quality)
+    def watch (url, quality=nil)
       twitch = "http://www.twitch.tv/#{url}"
-      string = "livestreamer #{twitch} #{quality}"
+      if quality 
+        string = "livestreamer #{twitch} #{quality}"
+      else
+        string = "livestreamer #{twitch} best"
+      end
+
       if options[:scrub]
         string += " scrub_string"
       end
