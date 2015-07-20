@@ -13,14 +13,20 @@ module LiveBlink
     # change watch to just be nameless
     default_task :watch
 
-    desc "watch [STREAM_NAME] [QUALITY]", "Watches stream associated with url"
-    method_option :scrub
+    desc "watch [STREAM_NAME] [QUALITY]", "Watches [STREAM_NAME]'s stream"
     def watch (url, quality=nil)
-      twitch = "http://www.twitch.tv/#{url}"
-      if quality 
-        string = "livestreamer #{twitch} #{quality}"
+      user = Twitch.users.get(url)
+      stream = user.stream
+      if stream
+        twitch = "http://www.twitch.tv/#{url}"
+        if quality 
+          string = "livestreamer #{twitch} #{quality}"
+        else
+          string = "livestreamer #{twitch} best"
+        end
+        exec string
       else
-        string = "livestreamer #{twitch} best"
+        puts "#{url} is offline."
       end
     end
 
@@ -29,11 +35,21 @@ module LiveBlink
       Wrapper.start(args)
     end
 
-    desc "who [GAME] [NUMBER]", "Lists the top [NUMBER] of streamers currently online for a [GAME]"
-    def who(game, number=nil)
-      g = Twitch.games.find(:name => game, :live => true)
-      puts g.map(&:name)
-      puts "ok"
+    desc "featured", "lists currently featured streams"
+    def featured
+      Twitch.streams.featured do |stream|
+        channel = stream.channel
+        puts "#{channel.display_name}: #{stream.viewer_count} viewers"
+        puts "#{channel.status}"
+        puts '-' * 80
+      end
+    end
+
+    desc "who [GAME]", "Lists the top [NUMBER] of streamers currently online for a [GAME]"
+    def who(game)
+      Twitch.games.find(:name => game) do |suggestion|
+        puts suggestion.name
+      end
     end 
 
     spec = Gem::Specification.find_by_name("liveblink")
