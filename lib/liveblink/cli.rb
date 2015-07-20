@@ -106,4 +106,47 @@ module LiveBlink
     # desc "test {module}", "test control module"
     # subcommand "test", LiveBlink::CLI::Test
   end
+
+  module Helper
+      spec = Gem::Specification.find_by_name("liveblink")
+      gem_root = spec.gem_dir
+      gem_lib = gem_root + "/lib"
+
+      @@fav_path = gem_lib + "/liveblink/cli/favorites.txt"
+
+      def self.get_online_favs
+        i = 0
+        datas = []
+        puts "These streams are online:"
+        datas = self.get_datas(self.get_favs)
+        datas.each do |data|
+          if data.online == true
+            puts data.stream_name + ', playing ' + data.game + ' (' + data.viewers.to_s + ' viewers)'
+          end
+        end
+      end
+
+
+      def self.get_favs
+        links = []
+        i = 0
+        # File.read('../favorites.txt')
+        File.foreach(@@fav_path) {
+          |stream| links[i] = stream
+          i += 1
+        }
+        return links
+      end
+
+      def self.get_datas(links)
+        datas = []
+        i = 0
+        links.each do |link|
+          links[i] = 'http://www.twitch.tv/' + link
+          datas[i] = Cathodic::TwitchData.new(links[i])
+          i += 1
+        end
+        return datas
+      end
+    end
 end
