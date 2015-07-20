@@ -1,4 +1,6 @@
 require 'cathodic'
+require 'fileutils'
+require 'tempfile'
 
 module LiveBlink
 	module CLI
@@ -47,11 +49,22 @@ module LiveBlink
 		 	#favorites delete NAME
 		 	desc "fav delete [NAME]", "Deletes [NAME] from favorites list"
 		 	def delete(name)
-		 	# 	open(@@fav_path, 'w') { |f|
-		  # 			f.puts name
-				# }
+
+				# Open temporary file
+				tmp = Tempfile.new("extract")
+
+				# Write good lines to temporary file
+				open(@@fav_path, 'r').each { |l| tmp << l unless l.chomp == name }
+
+				# Close tmp, or troubles ahead
+				tmp.close
+
+				# Move temp file to origin
+				FileUtils.mv(tmp.path, @@fav_path)
 				puts "Deleted #{name}"
 		 	end
+
+		 	desc "fav clear", "Completely clears favorites list"
 
 		 # 	#favorites -o
 		 # 	desc "fav -o", "Lists favorite streams that are online"
