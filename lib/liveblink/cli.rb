@@ -13,7 +13,7 @@ module LiveBlink
     # change watch to just be nameless
     default_task :watch
 
-    desc "watch [STREAM_NAME] [QUALITY]", "Watches [STREAM_NAME]'s stream"
+    desc "watch [STREAM] (QUALITY)", "Watches [STREAM] in (QUALITY)"
     def watch (url, quality=nil)
       user = Twitch.users.get(url)
       if user
@@ -34,10 +34,12 @@ module LiveBlink
       end
     end
 
+    # Helper method to allow nameless watching
     def method_missing(method, *args)
       args = ["watch", method.to_s] + args
       Wrapper.start(args)
     end
+
 
     desc "featured", "lists currently featured streams"
     def featured
