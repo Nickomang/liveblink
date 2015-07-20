@@ -10,9 +10,10 @@ module LiveBlink
   class Wrapper < Thor
     # make quality optional
     # change watch to just be nameless
+    default_task :watch
 
     desc "watch [STREAM_NAME] [QUALITY]", "Watches stream associated with url"
-    option :scrub
+    method_option :scrub
     def watch (url, quality=nil)
       twitch = "http://www.twitch.tv/#{url}"
       if quality 
@@ -20,13 +21,12 @@ module LiveBlink
       else
         string = "livestreamer #{twitch} best"
       end
-
-      if options[:scrub]
-        string += " scrub_string"
-      end
-      system string
     end
-    default_task :watch
+
+    def method_missing(method, *args)
+      args = ["watch", method.to_s] + args
+      Wrapper.start(args)
+    end
 
     spec = Gem::Specification.find_by_name("liveblink")
     gem_root = spec.gem_dir
