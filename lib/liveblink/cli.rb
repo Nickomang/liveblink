@@ -17,6 +17,7 @@ module LiveBlink
       end
       puts string
     end
+    default_task :watch
 
     desc "fav [COMMANDS]", "Favorites control module"
     subcommand "fav", LiveBlink::CLI::Fav
