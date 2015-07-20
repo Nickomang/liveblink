@@ -2,6 +2,7 @@ require 'cathodic'
 require 'highline/import'
 require 'fileutils'
 require 'tempfile'
+require 'kappa'
 
 module LiveBlink
 	module CLI
@@ -23,7 +24,7 @@ module LiveBlink
 					puts "Favorites file already exists"
 				end
 			end
-
+			
 			#favorites
 			desc "list", "Displays favorites list"
 			method_option :online, :aliases => "-o", :desc => "Lists only streams that are online"

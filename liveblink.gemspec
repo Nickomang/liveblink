@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'cathodic', "~> 0"
   spec.add_dependency 'iconv'
   spec.add_dependency 'highline'
+  spec.add_dependency 'kappa', "~> 1.0"
 end

@@ -3,6 +3,7 @@ require 'cathodic'
 require 'highline/import'
 require 'fileutils'
 require 'tempfile'
+require 'kappa'
 # require 'liveblink/cli/fav'
 # require 'liveblink/cli/test'
 
@@ -27,6 +28,13 @@ module LiveBlink
       args = ["watch", method.to_s] + args
       Wrapper.start(args)
     end
+
+    desc "who [GAME] [NUMBER]", "Lists the top [NUMBER] of streamers currently online for a [GAME]"
+    def who(game, number=nil)
+      g = Twitch.games.find(:name => game, :live => true)
+      puts g.map(&:name)
+      puts "ok"
+    end 
 
     spec = Gem::Specification.find_by_name("liveblink")
     gem_root = spec.gem_dir
