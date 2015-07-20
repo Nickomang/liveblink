@@ -27,7 +27,7 @@ There is an optional parameter following the name for quality, which defaults to
 
 Name | Description
 -----|------------
-liveblink [STREAM] (QUALITY) | Watches stream
+liveblink [STREAM]  (QUALITY) | Watches stream
 liveblink fav add [NAME] | Adds [NAME] to favorites list
 
 ## Contributing
