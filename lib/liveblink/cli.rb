@@ -1,6 +1,6 @@
 require 'thor'
 require 'liveblink/cli/fav'
-require 'liveblink/cli/test'
+# require 'liveblink/cli/test'
 
 module LiveBlink
   class Wrapper < Thor
@@ -22,7 +22,7 @@ module LiveBlink
     desc "fav [COMMANDS]", "Favorites control module"
     subcommand "fav", LiveBlink::CLI::Fav
 
-    desc "test {module}", "test control module"
-    subcommand "test", LiveBlink::CLI::Test
+    # desc "test {module}", "test control module"
+    # subcommand "test", LiveBlink::CLI::Test
   end
 end

@@ -5,10 +5,13 @@ require 'tempfile'
 
 module LiveBlink
 	module CLI
-		# @@fav_path = "./lib/liveblink/cli/favorites.json"
 		class Fav < Thor
 
-			@@fav_path = "./lib/liveblink/cli/favorites.txt"
+			spec = Gem::Specification.find_by_name("liveblink")
+			gem_root = spec.gem_dir
+			gem_lib = gem_root + "/lib"
+
+			@@fav_path = gem_lib + "/liveblink/cli/favorites.txt"
 
 			desc "init", "Initializes a favorites list, stored as a text file."
 			def init
@@ -70,30 +73,26 @@ module LiveBlink
 		 		answer = ask ("Deleting favorites file, are you sure? (Y/N).")
 		 		answer.downcase
 		 		if answer == 'yes' || answer ==  'y'
-		 			FileUtils.rm(@@fav_path)
-		 			puts "Favorites file deleted."
+		 			if File.file?(@@fav_path)
+			 			FileUtils.rm(@@fav_path)
+			 			puts "Favorites file deleted."
+			 			exec "figlet IT FUCKING WORKS BABY YEAH"
+			 		else
+			 			puts "No favorites file detected."
+			 			puts "Deletion aborted"
+			 		end
 		 		else
 		 			puts "Deletion aborted."
 		 		end
 		 	end
-
-		 # 	#favorites -o
-		 # 	desc "fav -o", "Lists favorite streams that are online"
-			# def online
-			# 	i = 0
-			# 	datas = []
-			# 	puts "These streams are online:"
-			# 	datas = Helper.get_datas(Helper.get_favs)
-			# 	datas.each do |data|
-			# 		if data.online == true
-			# 			puts data.stream_name + ', playing ' + data.game + ' (' + data.viewers.to_s + ' viewers)'
-			# 		end
-			# 	end
-			# end
 		end
 
 		module Helper
-			@@fav_path = "./lib/liveblink/cli/favorites.txt"
+			spec = Gem::Specification.find_by_name("liveblink")
+			gem_root = spec.gem_dir
+			gem_lib = gem_root + "/lib"
+
+			@@fav_path = gem_lib + "/liveblink/cli/favorites.txt"
 
 			def self.get_online_favs
 				i = 0
