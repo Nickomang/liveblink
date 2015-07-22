@@ -23,10 +23,14 @@ The simplest way to use liveblink is just by typing in the name of the streamer 
 
 	$ liveblink arteezy
 
-There is an optional parameter following the name for quality, which defaults to best if nothing is provided.
+There is an optional parameter following the name for quality, which defaults to 'best' if nothing is provided.
 
-[] denotes a mandatory argument
-() denotes an optional argument
+You can view a detailed version of the documentation within the CLI by inputting
+
+	$ liveblink help
+
+
+'[ ]' denotes a mandatory argument, while '( )' denotes an optional argument
 
 Name | Description | Options
 -----|-------------|-------
