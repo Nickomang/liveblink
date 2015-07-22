@@ -27,7 +27,7 @@ module LiveBlink
           if stream
             puts "#{stream.channel.name} is online playing #{stream.game_name} (#{stream.viewer_count} viewers)"
           else
-            puts "#{stream.channel.name} is offline"
+            puts "#{stream.channel.name} is offline."
           end
         else
           if stream
@@ -36,9 +36,9 @@ module LiveBlink
             else 
               string = "livestreamer #{stream.url} best"
             end
-            puts string
+            exec string
           else
-            puts "#{stream.channel.name} is offline"
+            puts "#{stream.channel.name} is offline."
           end
         end
         # puts "#{url} found!"

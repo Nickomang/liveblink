@@ -25,9 +25,12 @@ The simplest way to use liveblink is just by typing in the name of the streamer 
 
 There is an optional parameter following the name for quality, which defaults to best if nothing is provided.
 
-Name | Description
------|------------
-liveblink [STREAM] \(QUALITY) | Watches [STREAM] in (QUALITY)
+[] denotes a mandatory argument
+() denotes an optional argument
+
+Name | Description | Options
+-----|--------------------
+liveblink [STREAM] \(QUALITY) | Watches [STREAM] in (QUALITY) | --online (-o), reports if a stream is online
 
 liveblink fav add [NAME] | Adds [NAME] to favorites list
 
