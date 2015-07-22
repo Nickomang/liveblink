@@ -29,7 +29,7 @@ There is an optional parameter following the name for quality, which defaults to
 () denotes an optional argument
 
 Name | Description | Options
------|--------------------
+-----|-------------|-------
 liveblink [STREAM] \(QUALITY) | Watches [STREAM] in (QUALITY) | --online (-o), reports if a stream is online
 
 liveblink fav add [NAME] | Adds [NAME] to favorites list
