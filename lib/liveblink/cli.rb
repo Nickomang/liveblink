@@ -51,12 +51,7 @@ module LiveBlink
       end
     end
 
-    desc "who [GAME]", "Lists the top [NUMBER] of streamers currently online for a [GAME]"
-    def who(game)
-      Twitch.games.find(:name => game) do |suggestion|
-        puts suggestion.name
-      end
-    end 
+    
 
     spec = Gem::Specification.find_by_name("liveblink")
     gem_root = spec.gem_dir
@@ -135,6 +130,20 @@ module LiveBlink
           puts "Deletion aborted."
         end
       end
+
+      desc "fav"
+
+      desc "menutest", "testing the menu"
+      def menutest
+        say("\nThis is the new mode (default)...")
+        choose do |menu|
+          menu.prompt = "Please choose your favorite programming language?  "
+
+          menu.choice :ruby do say("Good choice!") end
+          menu.choices(:python, :perl) do say("Not from around here, are you?") end
+        end
+      end
+
 
     # Uncomment this if unmigrating from fav.rb
     # desc "fav [COMMANDS]", "Favorites control module"
