@@ -7,6 +7,9 @@ require 'kappa'
 # require 'liveblink/cli/fav'
 # require 'liveblink/cli/test'
 
+# to silence console output
+$VERBOSE = nil
+
 module LiveBlink
   class Wrapper < Thor
     # make quality optional
@@ -14,25 +17,36 @@ module LiveBlink
     default_task :watch
 
     desc "watch [STREAM] (QUALITY)", "Watches [STREAM] in (QUALITY)"
-    def watch (url, quality=nil)
+    method_option :online, :aliases => "-o", :desc => "Reports if stream is online"
+    def watch(url, quality=nil)
+      online = options[:online]
       user = Twitch.users.get(url)
       if user
         stream = user.stream
-        if stream
-          twitch = "http://www.twitch.tv/#{url}"
-          if quality 
-            string = "livestreamer #{twitch} #{quality}"
+        if online
+          if stream
+            puts "#{stream.channel.name} is online playing #{stream.game_name} (#{stream.viewer_count} viewers)"
           else
-            string = "livestreamer #{twitch} best"
+            puts "#{stream.channel.name} is offline"
           end
-          exec string
         else
-          puts "#{url} is offline."
+          if stream
+            if quality
+              string = "livestreamer #{stream.url} #{quality}" 
+            else 
+              string = "livestreamer #{stream.url} best"
+            end
+            puts string
+          else
+            puts "#{stream.channel.name} is offline"
+          end
         end
+        # puts "#{url} found!"
       else
         puts "#{url} does not exist."
       end
     end
+
 
     # Helper method to allow nameless watching
     def method_missing(method, *args)
@@ -130,8 +144,6 @@ module LiveBlink
           puts "Deletion aborted."
         end
       end
-
-      desc "fav"
 
       desc "menutest", "testing the menu"
       def menutest
