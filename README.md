@@ -32,9 +32,10 @@ You can view a detailed list of commands within the CLI by inputting
 
 '[ ]' denotes a mandatory argument, while '( )' denotes an optional argument
 
-Name | Description | Options
------|-------------|-------
-liveblink [STREAM] \(QUALITY) | Watches [STREAM] in (QUALITY) | --online (-o), reports if a stream is online
+Name | Description
+-----|-------------
+liveblink [STREAM] \(QUALITY) | Watches [STREAM] in (QUALITY)
+liveblink [STREAM] --online (-o) | Reports if a stream is online
 
 liveblink fav add [NAME] | Adds [NAME] to favorites list
 
