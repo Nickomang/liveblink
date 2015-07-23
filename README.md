@@ -25,7 +25,7 @@ The simplest way to use liveblink is just by typing in the name of the streamer 
 
 There is an optional parameter following the name for quality, which defaults to 'best' if nothing is provided.
 
-You can view a detailed version of the documentation within the CLI by inputting
+You can view a detailed list of commands within the CLI by inputting
 
 	$ liveblink help
 

@@ -32,9 +32,9 @@ module LiveBlink
         else
           if stream
             if quality
-              string = "livestreamer #{stream.url} #{quality}" 
+              string = "livestreamer #{stream.url} #{quality} --player-passthrough hls" 
             else 
-              string = "livestreamer #{stream.url} best"
+              string = "livestreamer #{stream.url} best --player-passthrough hls"
             end
             exec string
           else
@@ -66,7 +66,7 @@ module LiveBlink
     end
 
     
-
+    # @@fav_path = Helper.generate_fav_path
     spec = Gem::Specification.find_by_name("liveblink")
     gem_root = spec.gem_dir
     gem_lib = gem_root + "/lib"
@@ -101,7 +101,7 @@ module LiveBlink
       end
 
       #favorites add NAME
-      desc "fav add [NAME]", "Adds [NAME] to favorites list"
+      desc "add [NAME]", "Adds [NAME] to favorites list"
       def add(name)
         open(@@fav_path, 'a') { |f|
           f.puts name
@@ -110,7 +110,7 @@ module LiveBlink
       end
 
       #favorites delete NAME
-      desc "fav delete [NAME]", "Deletes [NAME] from favorites list"
+      desc "delete [NAME]", "Deletes [NAME] from favorites list"
       def delete(name)
 
         # Open temporary file
@@ -127,7 +127,7 @@ module LiveBlink
         puts "Deleted #{name}"
       end
 
-      desc "fav clear", "Completely clears favorites list"
+      desc "clear", "Completely clears favorites list"
       def clear
         answer = ask ("Deleting favorites file, are you sure? (Y/N).")
         answer.downcase
@@ -173,6 +173,16 @@ module LiveBlink
       gem_lib = gem_root + "/lib"
 
       @@fav_path = gem_lib + "/liveblink/cli/favorites.txt"
+
+      def self.generate_fav_path
+        spec = Gem::Specification.find_by_name("liveblink")
+        gem_root = spec.gem_dir
+        gem_lib = gem_root + "/lib"
+
+        return gem_lib + "/liveblink/cli/favorites.txt"
+      end
+
+      # @@fav_path = generate_fav_path
 
       def self.get_online_favs
         i = 0
