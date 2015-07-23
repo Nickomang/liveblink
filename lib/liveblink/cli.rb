@@ -38,7 +38,7 @@ module LiveBlink
             end
             exec string
           else
-            puts "#{stream.channel.name} is offline."
+            puts "#{stream.channel.display_name} is offline."
           end
         end
         # puts "#{url} found!"
