@@ -16,10 +16,12 @@ module LiveBlink
     # change watch to just be nameless
     default_task :watch
 
-    desc "watch [STREAM] (QUALITY)", "Watches [STREAM] in (QUALITY)"
+    desc "watch [STREAM] (QUALITY) (PLAYER)", "Watches [STREAM] in (QUALITY) on (PLAYER)"
     method_option :online, :aliases => "-o", :desc => "Reports if stream is online"
-    def watch(url, quality=nil)
+    method_option :mpv, :aliases => "-m", :desc => "Watches stream in MPV instead of VLC"
+    def watch(url, quality=nil, player=nil)
       online = options[:online]
+      mpv = options[:mpv]
       user = Twitch.users.get(url)
       if user
         stream = user.stream
@@ -31,10 +33,14 @@ module LiveBlink
           end
         else
           if stream
+            string = "livestreamer"
+            if mpv 
+              string += " mpv "
+            end
             if quality
-              string = "livestreamer #{stream.url} #{quality} --player-passthrough hls" 
+              string += "#{stream.url} #{quality} --player-passthrough hls" 
             else 
-              string = "livestreamer #{stream.url} best --player-passthrough hls"
+              string += "#{stream.url} best --player-passthrough hls"
             end
             exec string
           else
@@ -91,7 +97,11 @@ module LiveBlink
         online = options[:online]
         if File.file?(@@fav_path)
           if online
-            Helper.get_online_favs
+            datas = Helper.get_online_favs
+            answer = ask ("Watch a stream?")
+            datas.each do |data|
+              puts data.stream_name + ', playing ' + data.game + ' (' + data.viewers.to_s + ' viewers)'
+            end
           else 
             puts File.read(@@fav_path)
           end
@@ -187,13 +197,8 @@ module LiveBlink
       def self.get_online_favs
         i = 0
         datas = []
-        puts "These streams are online:"
         datas = self.get_datas(self.get_favs)
-        datas.each do |data|
-          if data.online == true
-            puts data.stream_name + ', playing ' + data.game + ' (' + data.viewers.to_s + ' viewers)'
-          end
-        end
+        return datas
       end
 
 
